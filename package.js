@@ -1,10 +1,12 @@
 Package.describe({
+  name: "cramhead:jquery-validate",
   summary: "jQuery Validation plug-in with additional validation methods",
-  version: "1.0.0",
-  git: ""
+  version: "1.0.1",
+  git: "https://github.com/cramhead/jquery-validate"
 });
 
-Package.onUse(function(api) {
+
+var packageExports = function(api) {
   api.versionsFrom('METEOR@0.9.2.2');
   api.use('jquery', 'client');
 
@@ -56,10 +58,13 @@ Package.onUse(function(api) {
   api.addFiles('additional/vinUS.js', 'client');
   api.addFiles('additional/zipcodeUS.js', 'client');
   api.addFiles('additional/ziprange.js', 'client');
-});
+};
+
+Package.onUse(packageExports);
 
 Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('jquery-validate');
-  api.addFiles('jquery-validate-tests.js');
+  api.use('test-helpers');
+  api.use('cramhead:jquery-validate');
+  api.addFiles('tests/tests.js');
 });
